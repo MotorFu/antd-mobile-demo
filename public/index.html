@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>antd-mobile demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <script>
+      if(!window.Promise) {
+        document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+      }
+    </script>
+    <link rel='stylesheet prefetch' href='https://unpkg.com/antd-mobile/dist/antd-mobile.min.css'>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src='https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js'></script>
+    <script>
+      if ('addEventListener' in document) {
+        window.addEventListener('load', function () {
+          FastClick.attach(document.body);
+        }, false);
+      }
+    </script>
+  </body>
+</html>
