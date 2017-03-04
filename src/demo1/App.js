@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     const {history}=this.props;
     return (
-        <div>
+        <div style={{minHeight:480}}>
           <NavBar mode="light" iconName={false}>第一界面</NavBar>
           <WhiteSpace size="lg"/>
           <List>
@@ -24,11 +24,11 @@ class App extends Component {
           </List>
           <WhiteSpace size="lg"/>
 
-          <WhiteSpace size="lg"/>
           <Button onClick={() => history.push("/next")}>
             <span style={{color: "green"}}>Button 按钮B——出现异常</span>
           </Button>
 
+          <WhiteSpace size="lg"/>
           <div style={{backgroundColor:"#FFF",paddingLeft:15,height:42,lineHeight:"42px"}}
                onClick={() => history.push("/next")}>
             <span style={{color: "green"}}>Div 按钮C——点击无异常</span>

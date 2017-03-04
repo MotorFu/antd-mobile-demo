@@ -15,7 +15,7 @@ class Next extends Component {
   render() {
     const {history}=this.props;
     return (
-        <div>
+        <div style={{minHeight:480}}>
           <NavBar mode="light" onLeftClick={()=>history.push("/")}>第二界面</NavBar>
           <WhiteSpace size="lg"/>
           <List>
@@ -27,7 +27,7 @@ class Next extends Component {
 
           <WhiteSpace size="lg"/>
           <Button onClick={(e) => this.onClickB(e, "触发了第二界面的【Button】按钮")}>
-            <span style={{color: "green"}}>Button点击</span>
+            <span style={{color: "green"}}>Button</span>
           </Button>
 
           <WhiteSpace size="lg"/>
