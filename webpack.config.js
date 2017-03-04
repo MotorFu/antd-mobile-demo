@@ -29,7 +29,7 @@ const webpackConfig = {
   output: {
     path: path.join(__dirname, 'public/dist'),
     filename: '[name]/index.js',
-    publicPath: 'http://' + ip + ':' + port + '/react/'
+    publicPath: 'http://' + ip + ':' + port + '/'
   },
   resolve: {
     modulesDirectories: ['node_modules', path.join(__dirname, './node_modules')],
@@ -76,18 +76,28 @@ const webpackConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("[name]/index.css?[contenthash]"),
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      filename: '[name]/index.html',
-    })
+    new webpack.optimize.CommonsChunkPlugin('common', 'common/index.js')
+
   ]
 };
+(function handleHtml() {
+  for (let k in entry) {
+    let filename = k + "/index.html";
+    webpackConfig.plugins.push(new HtmlWebpackPlugin({
+      template: 'public/index.html',
+      filename: filename,
+      chunks: [k, 'common']
+    }))
+  }
+})()
+
+
 function getHotEntry() {
   const entryHot = {};
   for (let k in entry) {
     const entryHotRow = [
       'webpack-dev-server/client?http://' + ip + ':' + port,
-      'webpack/hot/only-dev-server'
+      'webpack/hot/dev-server'
     ];
     entryHotRow.push(entry[k]);
     entryHot[k] = entryHotRow;
