@@ -3,8 +3,11 @@ import {
   Button, DatePicker,
   List, NavBar, WhiteSpace
 } from 'antd-mobile';
-
 class App extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     const {history}=this.props;
     return (
@@ -22,6 +25,12 @@ class App extends Component {
                      onClick={() => history.push("/next")}>
             <span style={{color: "green"}}>按钮B</span>
           </List.Item>
+
+          <WhiteSpace size="lg"/>
+
+          <DatePicker mode="date">
+            <List.Item arrow="horizontal">日期</List.Item>
+          </DatePicker>
         </div>
     );
   }

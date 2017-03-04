@@ -27,6 +27,7 @@ class Next extends Component {
                      onClick={(e) => this.onClick(e, "触发了第二界面的事件B按钮")}>
             <span style={{color: "red"}}>事件B</span>
           </List.Item>
+
         </div>
     );
   }
