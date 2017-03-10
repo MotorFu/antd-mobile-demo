@@ -5,7 +5,7 @@
  * Time 17:18
  */
 const entrys = {
-  demo1: './src/demo1/index.js',
-  demo2: './src/demo2/index.js',
+  'demo1': './src/demo1/index.js',
+  'demo2': './src/demo2/index.js',
 };
 module.exports = entrys;

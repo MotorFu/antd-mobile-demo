@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
   Button, DatePicker,
-  List, NavBar, WhiteSpace
+  List, NavBar,
+  WhiteSpace,WingBlank,Card,
 } from 'antd-mobile';
 class App extends Component {
   constructor(props) {

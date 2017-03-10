@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
   Button, DatePicker,
-  List, NavBar, WhiteSpace
+  List, NavBar, WhiteSpace,WingBlank
 } from 'antd-mobile';
 class Next extends Component {
   onClick = (e, content) => {

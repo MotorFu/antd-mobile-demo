@@ -1,0 +1,124 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _style5 = require('antd-mobile/lib/date-picker/style');
+
+var _datePicker = require('antd-mobile/lib/date-picker');
+
+var _datePicker2 = _interopRequireDefault(_datePicker);
+
+var _style6 = require('antd-mobile/lib/list/style');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _style7 = require('antd-mobile/lib/white-space/style');
+
+var _whiteSpace = require('antd-mobile/lib/white-space');
+
+var _whiteSpace2 = _interopRequireDefault(_whiteSpace);
+
+var _style8 = require('antd-mobile/lib/nav-bar/style');
+
+var _navBar = require('antd-mobile/lib/nav-bar');
+
+var _navBar2 = _interopRequireDefault(_navBar);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function (_Component) {
+  (0, _inherits3.default)(App, _Component);
+
+  function App(props) {
+    (0, _classCallCheck3.default)(this, App);
+    return (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).call(this, props));
+  }
+
+  (0, _createClass3.default)(App, [{
+    key: 'render',
+    value: function render() {
+      var history = this.props.history;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'App' },
+        _react2.default.createElement(
+          _navBar2.default,
+          { mode: 'light', iconName: false },
+          '\u7B2C\u4E00\u754C\u9762'
+        ),
+        _react2.default.createElement(_whiteSpace2.default, { size: 'lg' }),
+        _react2.default.createElement(
+          _list2.default,
+          null,
+          _react2.default.createElement(
+            _list2.default.Item,
+            { arrow: 'horizontal',
+              onClick: function onClick() {
+                return history.push("/next");
+              } },
+            _react2.default.createElement(
+              'span',
+              { style: { color: "green" } },
+              '\u6309\u94AEA'
+            )
+          )
+        ),
+        _react2.default.createElement(_whiteSpace2.default, { size: 'lg' }),
+        _react2.default.createElement(
+          _list2.default.Item,
+          { arrow: 'horizontal',
+            onClick: function onClick() {
+              return history.push("/next");
+            } },
+          _react2.default.createElement(
+            'span',
+            { style: { color: "green" } },
+            '\u6309\u94AEB'
+          )
+        ),
+        _react2.default.createElement(_whiteSpace2.default, { size: 'lg' }),
+        _react2.default.createElement(
+          _datePicker2.default,
+          { mode: 'date' },
+          _react2.default.createElement(
+            _list2.default.Item,
+            { arrow: 'horizontal' },
+            '\u65E5\u671F'
+          )
+        )
+      );
+    }
+  }]);
+  return App;
+}(_react.Component);
+
+exports.default = App;

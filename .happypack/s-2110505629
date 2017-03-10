@@ -1,0 +1,122 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _style4 = require('antd-mobile/lib/list/style');
+
+var _list = require('antd-mobile/lib/list');
+
+var _list2 = _interopRequireDefault(_list);
+
+var _style5 = require('antd-mobile/lib/white-space/style');
+
+var _whiteSpace = require('antd-mobile/lib/white-space');
+
+var _whiteSpace2 = _interopRequireDefault(_whiteSpace);
+
+var _style6 = require('antd-mobile/lib/nav-bar/style');
+
+var _navBar = require('antd-mobile/lib/nav-bar');
+
+var _navBar2 = _interopRequireDefault(_navBar);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Next = function (_Component) {
+  (0, _inherits3.default)(Next, _Component);
+
+  function Next() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Next);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Next.__proto__ || (0, _getPrototypeOf2.default)(Next)).call.apply(_ref, [this].concat(args))), _this), _this.onClick = function (e, content) {
+      e.preventDefault();
+      alert(content);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Next, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var history = this.props.history;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'App' },
+        _react2.default.createElement(
+          _navBar2.default,
+          { mode: 'light', onLeftClick: history.goBack },
+          '\u7B2C\u4E8C\u754C\u9762'
+        ),
+        _react2.default.createElement(_whiteSpace2.default, { size: 'lg' }),
+        _react2.default.createElement(
+          _list2.default,
+          null,
+          _react2.default.createElement(
+            _list2.default.Item,
+            { arrow: 'horizontal',
+              onClick: function onClick(e) {
+                return _this2.onClick(e, "触发了第二界面的事件A按钮");
+              } },
+            _react2.default.createElement(
+              'span',
+              { style: { color: "red" } },
+              '\u4E8B\u4EF6A'
+            )
+          )
+        ),
+        _react2.default.createElement(_whiteSpace2.default, { size: 'lg' }),
+        _react2.default.createElement(
+          _list2.default.Item,
+          { arrow: 'horizontal',
+            onClick: function onClick(e) {
+              return _this2.onClick(e, "触发了第二界面的事件B按钮");
+            } },
+          _react2.default.createElement(
+            'span',
+            { style: { color: "red" } },
+            '\u4E8B\u4EF6B'
+          )
+        )
+      );
+    }
+  }]);
+  return Next;
+}(_react.Component);
+
+exports.default = Next;

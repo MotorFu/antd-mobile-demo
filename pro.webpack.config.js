@@ -2,8 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");  //css单独打包
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const os = require('os');
 const autoprefixer = require('autoprefixer');
 const pxtorem = require('postcss-pxtorem');
+const cssnano = require('cssnano');
 const glob = require('glob');
 
 const svgDirs = []; // 如果需要本地部署图标，需要在此加入本地图标路径，本地部署方式见以下文档
@@ -20,8 +22,8 @@ const theme = {
 }
 //index入口管理
 const entry = require('./entry');
-
 const webpackConfig = {
+  cache: true,
   devtool: false,
   entry: entry,
 
@@ -29,19 +31,28 @@ const webpackConfig = {
     path: path.join(__dirname, './build'),
     filename: '[name]/index.js',
   },
+  // externals: {
+  //   'react': 'React',
+  //   'react-dom': 'ReactDOM',
+  //   'react-router': 'ReactRouter',
+  // },
   module: {
 
     loaders: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
+        include: path.join(__dirname, 'src'),
         loader: 'babel',
         query: {
+          cacheDirectory: true,
           plugins: [
+            "transform-decorators-legacy",
+            "transform-class-properties",
             ["import", [{"style": true, "libraryName": "antd-mobile"}]]
           ],
           presets: ['react', 'es2015', 'stage-0'],
-        },
+        }
       },
       {test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss')},
       {
@@ -64,26 +75,27 @@ const webpackConfig = {
     autoprefixer({
       browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
     }),
-    pxtorem({rootValue: 100, propWhiteList: []})
+    pxtorem({rootValue: 100, propWhiteList: []}),
+    cssnano
   ],
   plugins: [
+
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {warnings: false},
+      output: {comments: false}
+    }),
+
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {warnings: false},
-      output: {comments: false}
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15}),
     new webpack.optimize.MinChunkSizePlugin({minChunkSize: 10000}),
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("[name]/index.css?[contenthash]"),
-    new webpack.optimize.CommonsChunkPlugin('common', 'common/index.js')
-
+    new webpack.optimize.CommonsChunkPlugin('common','common/index.js?[hash]',['demo1','demo2']),
+    new ExtractTextPlugin("[name]/index.css?[hash]"),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin()
   ]
 
 };

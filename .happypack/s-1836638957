@@ -1,0 +1,42 @@
+'use strict';
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created with antd-mobile-demo
+ * Author motorfu
+ * Date 2017/3/4
+ * Time 22:55
+ */
+var path = require('path');
+var webpack = require('webpack');
+var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+var vendors = ['react', 'react-dom', 'react-router', 'mobx', 'mobx-react', 'whatwg-fetch'];
+
+module.exports = {
+  entry: {
+    vendor: vendors
+  },
+  output: {
+    path: path.join(__dirname, 'build/js'),
+    filename: '[name].dll.js',
+    library: '[name]_library'
+  },
+  plugins: [new webpack.DllPlugin({
+    path: path.join(__dirname, 'build', '[name]-manifest.json'),
+    name: '[name]_library',
+    context: __dirname
+  }), new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }), new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': (0, _stringify2.default)(process.env.NODE_ENV || 'development')
+    }
+  })]
+};

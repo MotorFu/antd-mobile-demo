@@ -38,7 +38,9 @@ class App extends Component {
             <WhiteSpace size="lg"/>
             <Card>
               <Card.Header title="在Android浏览器中出现onClick穿透"></Card.Header>
-              <Card.Body>即在第一界面点击“按钮A”进入第二界面时，会触发第二界面相同位置上的“事件A”按钮.</Card.Body>
+              <Card.Body>
+                当前测试在List.Item,Button组件存在此类问题，<br/>
+                即在第一界面点击“按钮A”进入第二界面时，会触发第二界面相同位置上的“事件A”按钮.</Card.Body>
             </Card>
             <WhiteSpace size="lg"/>
           </WingBlank>

@@ -27,13 +27,13 @@ class Next extends Component {
 
           <WhiteSpace size="lg"/>
           <Button onClick={(e) => this.onClickB(e, "触发了第二界面的【Button】按钮")}>
-            <span style={{color: "green"}}>Button</span>
+            <span style={{color: "red"}}>Button</span>
           </Button>
 
           <WhiteSpace size="lg"/>
           <div style={{backgroundColor:"#FFF",paddingLeft:15,height:42,lineHeight:"42px"}}
                onClick={(e) => this.onClickB(e, "触发了第二界面的【Div】按钮")}>
-            <span style={{color: "green"}}>Div</span>
+            <span style={{color: "red"}}>Div</span>
           </div>
 
         </div>

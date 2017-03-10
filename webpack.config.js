@@ -4,7 +4,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");  //css单独�
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer');
 const pxtorem = require('postcss-pxtorem');
+const HappyPack = require('happypack');
+const cssnano = require('cssnano');
 const glob = require('glob');
+
 
 const svgDirs = []; // 如果需要本地部署图标，需要在此加入本地图标路径，本地部署方式见以下文档
 // 把`antd-mobile/lib`目录下的 svg 文件加入进来，给 svg-sprite-loader 插件处理
@@ -39,14 +42,9 @@ const webpackConfig = {
     loaders: [
       {
         test: /\.js[x]?$/,
+        loader: 'happypack/loader?id=js',
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          plugins: [
-            ["import", [{"style": true, "libraryName": "antd-mobile"}]]
-          ],
-          presets: ['react', 'es2015', 'stage-0'],
-        },
+        include: __dirname,
       },
       {test: /\.css$/i, loader: ExtractTextPlugin.extract('style', 'css!postcss')},
       {
@@ -70,14 +68,29 @@ const webpackConfig = {
     autoprefixer({
       browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
     }),
-    pxtorem({rootValue: 100, propWhiteList: []})
+    pxtorem({rootValue: 100, propWhiteList: []}),
+    cssnano
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin("[name]/index.css?[contenthash]"),
-    new webpack.optimize.CommonsChunkPlugin('common', 'common/index.js')
-
+    new webpack.optimize.CommonsChunkPlugin('common', 'common/index.js'),
+    new HappyPack({
+      id: 'js',
+      threads: 8,
+      loaders: [{
+        path: 'babel',
+        query: {
+          presets: ['es2015', 'stage-0', 'react'],
+          plugins: [
+            "transform-runtime",
+            "transform-decorators-legacy",
+            "transform-class-properties", ["import", { libraryName: "antd-mobile", style: true }]
+          ]
+        }
+      }]
+    })
   ]
 };
 (function handleHtml() {
